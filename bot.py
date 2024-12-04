@@ -54,6 +54,7 @@ class ListGenId:
 
 
 # Возвращает список с кодами 0000..9999 где в начале самые используемые коды
+# Считывает из файла и инверсирует полученный список
 def getCodeListFromFile(filename):
     code_list = []
     file_list = open(filename, 'r')
@@ -61,6 +62,8 @@ def getCodeListFromFile(filename):
         str_to_parse = file_list.readline()  # Потому что чтение происходит вместе с символом переноса
         code_list.append(str_to_parse[:-1])
     file_list.close()
+
+    code_list.reverse()
     return code_list
 '''
 # Возвращает список с кодами 0000..9999 где в начале самые используемые коды
