@@ -1,4 +1,5 @@
 import telebot  # Telegram bot
+import os  # Для проверки существования файла
 from telebot import types  # Для кнопок
 
 
@@ -101,6 +102,14 @@ def getFragmentList(p_list, p_count, p_index):
 
 # Запуск кода, если этот файл - не модуль другого кода
 if __name__ == '__main__':
+    # Если файлы не существуют
+    # То дальнейшая работа бессмысленна
+    # Данные этих файлов следует выгружать в память программы
+    # чтобы не проверять наличие этих файлов перед чтением
+    if os.path.exists(FILENAME_LIST) or os.path.exists(FILENAME_TOKEN):
+        print('Cannot be open', FILENAME_TOKEN, 'or', FILENAME_LIST)
+        exit(0)
+
     # Инициализация бота
     file_token = open(FILENAME_TOKEN, 'r')
     bot_token = file_token.readline()
